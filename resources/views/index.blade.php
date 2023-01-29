@@ -65,7 +65,6 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Outages</h1>
-                        <h1 id="yakoub">Hola</h1>
                         <table class="table table-hover">
                     <thead>
     <tr>
@@ -75,24 +74,37 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($outages as $outage)
-    
-    <tr class="clickable-row" onclick="showPopUp({{$outage->id}})">
+  @foreach ( $outages as $outage )
+    <tr>
       <th scope="row">{{$outage->id}}</th>
       <td>{{$outage->name}}</td>
       <td>{{$outage->wilaya}}</td>
-      <script>
-    function showPopUp(){
-        alert('{{$outage->id}}');
-    }
-</script>
-    </tr>
+      <td><button type="button" class="btn btn-primary" onclick='showPopUp({{$outage->id}},{{$outage->id}})'>Afficher</button></td>
+      @if (Auth::user()->role_as == 1)
+      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+          
+      @endif
+            <!-- Trigger the Modal -->
+    <!--<img id="myImg" src="" alt="Snow" style="width:100%;max-width:300px"> -->
+    
+    <!-- The Modal -->
+    <div id="{{$outage->id}}" class="modal">
         
-    @endforeach
+        
+    
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" src="{{$outage->image}}" alt="{{$outage->name}}">
+    
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption{{$outage->id}}" class="caption"></div>
+    </div>             
+    </tr>
+      
+  @endforeach
+
 
   </tbody>
 </table>
-                        
                         
                         
                     </div>
@@ -114,15 +126,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        
     </body>
 </html>
 
 <script>
-    function showPopUp(image){
-        alert(image);
+    function showPopUp(modalId,capName){
+        // Get the modal
+        var modal = document.getElementById(modalId);
+    
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+    //var img = document.getElementById(imageTag);
+    //var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption"+capName);
+    
+        modal.style.display = "block";
+        
+        captionText.innerHTML = modal.getElementsByTagName('img')[0].alt;
+    
+    
+    // Get the <span> element that closes the modal
+    //var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on <span> (x), close the modal
+    modal.onclick = function () {
+        modal.style.display = "none";
     }
+
+    }
+
+    
 </script>
