@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->middleware('auth')->name('index');
 
+Route::get('/add',[App\Http\Controllers\Admin\AddController::class, 'index'])->middleware(['auth','isAdmin'])->name('add');
+Route::post('/add',[App\Http\Controllers\Admin\AddController::class, 'store'])->middleware(['auth','isAdmin'])->name('store');
+
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

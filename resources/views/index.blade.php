@@ -49,9 +49,9 @@
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link" href="{{route('add')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gestion d'Outages
+                                Ajouter un Outage
                             </a>
                              @endif
                             
