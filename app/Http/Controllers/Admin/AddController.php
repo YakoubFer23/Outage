@@ -22,8 +22,8 @@ class AddController extends Controller
         $outage->wilaya = $data['wilaya'];
         $outage->status = '1';
         if($request->hasFile('image')){
-            $request = $data->file('image');
-            $filename = time() . '-' . $file->getClientOriginalExtension();
+            $file = $request->file('image');
+            $filename = '/assets/outageImg/' . time() . '.' . $file->getClientOriginalExtension();
             $file->move('assets/outageImg', $filename);
             $outage->image = $filename;
         }
