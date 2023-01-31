@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Waves Outages</title>
+        <title>Corbeille</title>
         <link href="assets/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="assets/dist/all.js"></script>
@@ -69,45 +69,40 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <div style="display: flex; align-items: center;">
-                            <h1 class="mt-4" style="flex: 3;">Outages</h1>
-                            @if (Auth::user()->role_as == '1')
-                            <button type="button" id="actifButton" class="btn btn-secondary actif" onclick='showActif()'>Masquer Résolu</button>
-                                
-                            @endif
-
-                        </div>
+                        <h1 class="mt-4">Corbeille</h1>
                         <table class="table table-hover">
                     <thead>
     <tr>
       
       <th scope="col">Nom</th>
       <th scope="col">Wilaya</th>
-      <th scope="col">Status</th>
       <th scope="col">Date Création</th>
+      <th scope="col">Date Suppression</th>
     </tr>
   </thead>
   <tbody>
       
   @foreach ( $outages as $outage )
-    <tr class="{{$etat[$outage->status]}} entry">
+    <tr class="{{$etat[$outage->status]}}">
       
       <td>{{$outage->name}}</td>
       <td>{{$outage->wilaya}}</td>
-      <td>{{ $etat[$outage->status] }}</td>
       <td>{{ $outage->created_at }}</td>
+      <td>{{ $outage->deleted_at }}</td>
       <td><button type="button" class="btn btn-primary" onclick='showPopUp({{$outage->id}})'>Afficher</button></td>
       @if (Auth::user()->role_as == 1)
-      <td>
-      <form action="{{route('update')}}" method="post">
+      
+        <td>
+      <form action="{{route('restore')}}" method="post">
           @csrf
-          <input type="hidden" name="updateId" value="{{$outage->id}}" >
-          <button type="submit" class="btn btn-info">{{$outage->status == '0' ? 'Actif' : 'Résolu'}}</button>
+          <input type="hidden" name="deleteId" value="{{$outage->id}}" >
+          <button type="submit" class="btn btn-dark">Restaurer</button>
       </form>  
 
       </td>
+
       <td>
-      <form action="{{route('delete')}}" method="post">
+      <form action="{{route('hardDelete')}}" method="post">
           @csrf
           <input type="hidden" name="deleteId" value="{{$outage->id}}" >
           <button type="submit" class="btn btn-danger">Supprimer</button>
@@ -163,13 +158,6 @@
         
     </body>
 </html>
-@if (Auth::user()->role_as == '0')
-    <script>
-        var rows = document.getElementsByClassName('Résolu');
-
-    Array.from(rows).forEach(element => element.style.display = "none");
-    </script>
-@endif
 
 <script>
     function showPopUp(modalId){
@@ -193,32 +181,6 @@
     modal.onclick = function () {
         modal.style.display = "none";
     }
-
-    }
-
-    function showActif(){
-        var buttonActif = document.getElementById('actifButton');
-        var résolu = document.getElementsByClassName('Résolu');
-        var actif = document.getElementsByClassName('Actif');
-        if (buttonActif.classList.contains('actif')){
-
-        Array.from(résolu).forEach(element => element.style.display = "none");
-        Array.from(actif).forEach(element => element.style.display = "table-row");
-        buttonActif.innerText = "Afficher Résolu";
-        buttonActif.className = "btn btn-success";
-        buttonActif.classList.remove('actif');
-        buttonActif.classList.add('rés');
-        }else{
-
-        
-        Array.from(résolu).forEach(element => element.style.display = "table-row");
-        buttonActif.innerText = "Masquer Résolu";
-        buttonActif.className = "btn btn-secondary";
-        buttonActif.classList.remove('rés');
-        buttonActif.classList.add('actif');
-        }
-        
-        
 
     }
 

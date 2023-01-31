@@ -15,6 +15,7 @@ class AddController extends Controller
 
 
     public function store(OutageFormRequest $request){
+        
         $data = $request->validated();
 
         $outage = new Outage;
@@ -23,7 +24,7 @@ class AddController extends Controller
         $outage->status = '1';
         if($request->hasFile('image')){
             $file = $request->file('image');
-            $filename = '/assets/outageImg/' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'assets/outageImg/' . time() . '.' . $file->getClientOriginalExtension();
             $file->move('assets/outageImg', $filename);
             $outage->image = $filename;
         }

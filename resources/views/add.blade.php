@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <title>Ajouter un Outage</title>
+        <link href="assets/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="assets/dist/all.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -42,7 +42,7 @@
                         <div class="nav">
                             
                             <a class="nav-link" href="{{route('index')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Outages
                             </a>
                             @if (Auth::user()->role_as == 1)
@@ -50,8 +50,12 @@
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
                             <a class="nav-link" href="{{route('add')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                                 Ajouter un Outage
+                            </a>
+                            <a class="nav-link" href="{{route('trash')}}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-trash"></i></div>
+                                Corbeille
                             </a>
                              @endif
                             
@@ -191,11 +195,11 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/dist/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="assets/dist/Chart.js"></script>
         
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="assets/dist/simple-datatables.js"></script>
         
     </body>
 </html>
