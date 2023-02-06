@@ -94,7 +94,8 @@
 
                         <div class="mb-3">
                             <label for="">Wilaya</label>
-                            <select name="wilaya" class="form-control">
+                            <input type="text" name="wilaya" class="form-control">
+                           <!-- <select name="wilaya" class="form-control">
                                 <option selected disabled>Sélectionner la Wilaya </option>
                                 <option value="Adrar">01 - Adrar</option>
                                 <option value="Chlef">02 - Chlef</option>
@@ -155,7 +156,7 @@
                                 <option value="El M'ghair">57 - El M'ghair</option>
                                 <option value="El Meniaa">58 - El Meniaa</option>
                                 </select>
-                        </div>
+-->                        </div>
 
                         <div class="mb-3">
                             <label for="">Image</label>

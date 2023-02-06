@@ -17,4 +17,11 @@ class Outage extends Model
         'image',
         'status'
     ];
+
+
+    public function getImageName($id)
+    {
+        $country = Countries::where('id', $id)->first();
+        return $country->image;
+    }
 }
