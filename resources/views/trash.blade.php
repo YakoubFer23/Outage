@@ -46,7 +46,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Outages
                             </a>
-                            @if (Auth::user()->role_as == 1)
+                            @if (Auth::user()->role_as >= 1)
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
@@ -54,10 +54,12 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                                 Ajouter un Outage
                             </a>
+                                @if (Auth::user()->role_as == 2)
                             <a class="nav-link" href="{{route('trash')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-trash"></i></div>
                                 Corbeille
                             </a>
+                                @endif
                              @endif
                             
                             
@@ -90,7 +92,7 @@
       <td>{{ $outage->created_at }}</td>
       <td>{{ $outage->deleted_at }}</td>
       <td><button type="button" class="btn btn-primary" onclick='showPopUp({{$outage->id}})'>Afficher</button></td>
-      @if (Auth::user()->role_as == 1)
+      @if (Auth::user()->role_as >= 1)
       
         <td>
       <form action="{{route('restore')}}" method="post">

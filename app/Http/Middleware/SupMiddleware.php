@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class SupMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class AdminMiddleware
     {
 
         if(Auth::check()){
-            if(Auth::user()->role_as == '2'){
+            if(Auth::user()->role_as >= 1){
                 return $next($request);
             }else{
                 return redirect('/');

@@ -46,7 +46,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Outages
                             </a>
-                            @if (Auth::user()->role_as == 1)
+                            @if (Auth::user()->role_as >= 1)
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
@@ -54,10 +54,12 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                                 Ajouter un Outage
                             </a>
+                                @if (Auth::user()->role_as == 2)
                             <a class="nav-link" href="{{route('trash')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-trash"></i></div>
                                 Corbeille
                             </a>
+                                @endif
                              @endif
                             
                             
@@ -71,7 +73,7 @@
                     <div class="container-fluid px-4">
                         <div style="display: flex; align-items: center;">
                             <h1 class="mt-4" style="flex: 3;">Outages</h1>
-                            @if (Auth::user()->role_as == '1')
+                            @if (Auth::user()->role_as >= 1)
                             <button type="button" id="actifButton" class="btn btn-secondary actif" onclick='showActif()'>Masquer Résolu</button>
                                 
                             @endif
@@ -97,7 +99,7 @@
       <td>{{ $etat[$outage->status] }}</td>
       <td>{{ $outage->created_at }}</td>
       <td><button type="button" class="btn btn-primary" onclick='showPopUp({{$outage->id}})'>Afficher</button></td>
-      @if (Auth::user()->role_as == 1)
+      @if (Auth::user()->role_as >= 1)
       <td>
       <form action="{{route('update')}}" method="post">
           @csrf
