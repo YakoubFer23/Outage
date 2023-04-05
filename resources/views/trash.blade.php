@@ -56,7 +56,12 @@
                                 Corbeille
                             </a>
                                 @endif
+<<<<<<< HEAD
                              @endif                            
+=======
+                             @endif
+                            
+>>>>>>> 1dc0137778170cb7e5702830711b7616fd31f085
                             
                             
                     </div>

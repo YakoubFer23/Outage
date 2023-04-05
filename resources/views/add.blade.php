@@ -42,6 +42,7 @@
                                 Outages
                             </a>
                             @if (Auth::user()->role_as >= 1)
+                            @if (Auth::user()->role_as >= 1)
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
@@ -58,6 +59,8 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                                 Logs
                             </a>
+                                @endif
+                             @endif
                                 @endif
                              @endif
                             

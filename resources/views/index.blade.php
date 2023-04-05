@@ -43,6 +43,7 @@
                                 Outages
                             </a>
                             @if (Auth::user()->role_as >= 1)
+                            @if (Auth::user()->role_as >= 1)
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
