@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+
 
 class Outage extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, LogsActivity;
 
     protected $table = 'outages';
     protected $fillable = [
@@ -17,4 +20,12 @@ class Outage extends Model
         'image',
         'status'
     ];
+    
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly(['name']);
+        // Chain fluent methods for configuration options
+
+    }
 }

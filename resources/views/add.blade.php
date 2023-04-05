@@ -24,12 +24,8 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Logout</a></li>
-                    </ul>
-                </li>
+                    <button class="btn btn-success" id="logout" onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">Se d&#233connecter</button>                 </li>
             </ul>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -45,7 +41,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Outages
                             </a>
-                            @if (Auth::user()->role_as == 1)
+                            @if (Auth::user()->role_as >= 1)
                                 
                            
                             <div class="sb-sidenav-menu-heading">Section Sup</div>
@@ -53,10 +49,16 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                                 Ajouter un Outage
                             </a>
-                            <a class="nav-link" href="{{route('trash')}}">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-trash"></i></div>
-                                Corbeille
+                            <a class="nav-link" href="{{url('change')}}" >
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-key"></i></i></div>
+                                Changer le Mot de Passe
                             </a>
+                                @if (Auth::user()->role_as == 2)
+                            <a class="nav-link" href="{{route('log')}}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
+                                Logs
+                            </a>
+                                @endif
                              @endif
                             
                             
@@ -94,7 +96,9 @@
 
                         <div class="mb-3">
                             <label for="">Wilaya</label>
-                            <select name="wilaya" class="form-control">
+                           <input type="text" name="wilaya" class="form-control">
+				<!--
+				 <select name="wilaya" class="form-control">
                                 <option selected disabled>Sélectionner la Wilaya </option>
                                 <option value="Adrar">01 - Adrar</option>
                                 <option value="Chlef">02 - Chlef</option>
@@ -155,6 +159,7 @@
                                 <option value="El M'ghair">57 - El M'ghair</option>
                                 <option value="El Meniaa">58 - El Meniaa</option>
                                 </select>
+				-->
                         </div>
 
                         <div class="mb-3">
@@ -184,7 +189,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Herbaia 2023</div>
+                            <div class="text-muted">Copyright &copy; FY 2023</div>
                             
                         </div>
                     </div>

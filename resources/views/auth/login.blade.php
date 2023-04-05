@@ -29,7 +29,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                                <label for="inputEmail">Email address</label>
+                                                <label for="inputEmail">Nom d'utilisateur </label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -39,7 +39,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                                <label for="inputPassword">Password</label>
+                                                <label for="inputPassword">Mot de passe </label>
                                             </div>
                                             
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
