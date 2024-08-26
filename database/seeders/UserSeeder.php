@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'name' => 'CcWaves',
             'email' => 'CcWaves',
             'password' => Hash::make('CcWaves'),
-            'role_as' => '1',
+            'role_as' => '0',
         ]);
 
 	
